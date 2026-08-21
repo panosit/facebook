@@ -37,6 +37,29 @@ A simplified recreation of the first 2004 Thefacebook experience built with Djan
 5. **Open your browser:**
    Navigate to http://127.0.0.1:8000
 
+
+## Running Locally Without Docker
+
+Use this when you want the normal Django development workflow:
+
+```
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+Then open http://127.0.0.1:8000.
+
+## Running With Docker
+
+Use Docker only when you want an isolated containerized environment:
+
+```
+docker compose up --build
+```
+
+The Compose command runs migrations automatically and starts Django on http://127.0.0.1:8000. The project directory is mounted into the container, so code changes are reflected during development.
+
 ## Project Structure
 
 ```
