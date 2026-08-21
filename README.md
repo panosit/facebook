@@ -1,16 +1,16 @@
-# Facebook Clone - Django Social Network
+# Thefacebook - Django Social Network
 
-A simplified Facebook clone built with Django featuring user profiles, friends system, news feed, posts, comments, and likes.
+A simplified recreation of the first 2004 Thefacebook experience built with Django. The app focuses on the original college-directory style: Harvard profiles, directory search, friends, pokes, classmates, and simple social-network stats.
 
 ## Features
 
 - **User Authentication**: Register, login, logout
-- **User Profiles**: Profile pictures, cover photos, bio, location, and more
-- **Friends System**: Send, accept, reject friend requests
-- **News Feed**: See posts from friends
-- **Posts**: Create posts with text and images
-- **Comments**: Comment on posts
-- **Likes**: Like/unlike posts
+- **Harvard Profiles**: Profile picture, concentration, house, class year, courses, relationship status, interests, and about me
+- **Directory Search**: Find classmates by name, concentration, house, or courses
+- **Friends System**: Send, accept, reject, and remove friend requests
+- **Pokes**: Send and clear pokes
+- **Classmates**: Discover people taking the same course
+- **Network Stats**: Show friends and friends-of-friends counts
 
 ## Setup
 
@@ -21,7 +21,6 @@ A simplified Facebook clone built with Django featuring user profiles, friends s
 
 2. **Run migrations:**
    ```
-   python manage.py makemigrations
    python manage.py migrate
    ```
 
@@ -42,8 +41,7 @@ A simplified Facebook clone built with Django featuring user profiles, friends s
 
 ```
 facebook/
-├── accounts/         # User authentication and profiles
-├── posts/            # Posts, comments, and likes
+├── accounts/         # User authentication, profiles, directory, classmates, pokes
 ├── friends/          # Friend requests and relationships
 ├── facebook_project/ # Django project settings
 ├── static/           # CSS and static files
@@ -55,6 +53,6 @@ facebook/
 ## Tech Stack
 
 - Django 4.2+
-- SQLite (default database)
-- HTML/CSS (no JavaScript framework)
-- Pillow (image handling)
+- SQLite for local development
+- HTML/CSS inspired by Thefacebook's 2004 interface
+- Pillow for profile image handling

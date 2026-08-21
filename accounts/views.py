@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from .models import Poke, UserProfile
 from friends.utils import get_friend_ids, get_network_stats
 
@@ -57,7 +58,17 @@ def about(request):
 @login_required
 def directory(request):
     users = User.objects.exclude(id=request.user.id).select_related('profile')
-    return render(request, 'accounts/directory.html', {'users': users})
+    query = request.GET.get('q', '').strip()
+    if query:
+        users = users.filter(
+            Q(username__icontains=query) |
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query) |
+            Q(profile__concentration__icontains=query) |
+            Q(profile__house__icontains=query) |
+            Q(profile__courses__icontains=query)
+        )
+    return render(request, 'accounts/directory.html', {'users': users, 'query': query})
 
 
 @login_required
