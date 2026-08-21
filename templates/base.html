@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Thefacebook{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'directory' %}" class="logo">Thefacebook</a>
+            <div class="nav-links">
+                <a href="{% url 'directory' %}">home</a>
+                <span class="nav-sep">|</span>
+                <a href="{% url 'my_friends' %}">my friends</a>
+                <span class="nav-sep">|</span>
+                <a href="{% url 'friend_requests' %}">
+                    friend requests
+                    {% with pending=friends_pending_count %}
+                        {% if pending > 0 %}
+                        <span class="badge">{{ pending }}</span>
+                        {% endif %}
+                    {% endwith %}
+                </a>
+                <span class="nav-sep">|</span>
+                <a href="{% url 'pokes' %}">pokes</a>
+                <span class="nav-sep">|</span>
+                <a href="{% url 'profile' user.username %}">my profile</a>
+                <span class="nav-sep">|</span>
+                <a href="{% url 'logout' %}">logout</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <div class="footer">
+        <p><a href="{% url 'about' %}">about</a> | Thefacebook &copy; 2004</p>
+    </div>
+</body>
+</html>

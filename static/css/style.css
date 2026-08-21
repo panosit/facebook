@@ -1,0 +1,384 @@
+/* thefacebook - circa 2004 styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+a {
+    color: #3b5998;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #3b5998;
+    border-bottom: 1px solid #29447e;
+    padding: 4px 0;
+}
+
+.nav-container {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.logo:hover {
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    font-size: 11px;
+}
+
+.nav-sep {
+    color: #a9b8d4;
+    font-size: 11px;
+}
+
+.badge {
+    background-color: #ffffff;
+    color: #3b5998;
+    padding: 0 4px;
+    font-size: 10px;
+    margin-left: 2px;
+}
+
+/* Messages */
+.messages {
+    padding: 6px 10px;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.alert {
+    padding: 4px 8px;
+    border: 1px solid #999;
+    margin-bottom: 6px;
+    font-size: 11px;
+}
+
+.alert-success {
+    background-color: #eaf3ea;
+    border-color: #b0d0b0;
+}
+
+.alert-error {
+    background-color: #fbe3e4;
+    border-color: #d99;
+}
+
+.alert-info {
+    background-color: #eef3fb;
+    border-color: #9ab4d8;
+}
+
+.alert-warning {
+    background-color: #fff6e0;
+    border-color: #e0c060;
+}
+
+/* Main content */
+.main-content {
+    padding: 10px;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 18px;
+    color: #3b5998;
+}
+
+.wordmark {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 32px;
+    color: #3b5998;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 14px;
+    color: #3b5998;
+    border-bottom: 1px solid #3b5998;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+}
+
+/* Homepage (logged-out welcome page) */
+.homepage {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.homepage-intro {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+}
+
+.homepage-photo {
+    width: 70px;
+    height: 90px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border: 1px solid #999;
+}
+
+.tagline {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 11px;
+    text-align: left;
+}
+
+.intro-list {
+    text-align: left;
+    margin: 0 0 10px 20px;
+    font-size: 11px;
+    color: #333;
+}
+
+/* Auth pages */
+.auth-box {
+    background: #f7f7f7;
+    border: 1px solid #b7c5d9;
+    padding: 15px;
+    width: 220px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.auth-box h1 {
+    margin-bottom: 4px;
+}
+
+.auth-box h2 {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.auth-box-standalone {
+    width: 300px;
+    margin: 40px auto;
+    background: #ffffff;
+}
+
+.auth-box-standalone .wordmark {
+    font-size: 24px;
+}
+
+.auth-box-standalone .tagline {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #999;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+.btn-primary,
+.btn-success,
+.btn-danger {
+    background-color: #3b5998;
+    color: #ffffff;
+    border: 1px solid #29447e;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover,
+.btn-primary:hover,
+.btn-success:hover,
+.btn-danger:hover {
+    background-color: #29447e;
+}
+
+.auth-link {
+    margin-top: 10px;
+    font-size: 11px;
+}
+
+/* Directory table */
+.directory-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.directory-table th {
+    background-color: #d8dfea;
+    border: 1px solid #b7c5d9;
+    padding: 4px 6px;
+    text-align: left;
+    font-size: 11px;
+}
+
+.directory-table td {
+    border: 1px solid #b7c5d9;
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+
+.thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 1px solid #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.default-avatar {
+    background-color: #d8dfea;
+    color: #3b5998;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Profile */
+.profile-container {
+    border: 1px solid #b7c5d9;
+    padding: 10px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #b7c5d9;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #999;
+}
+
+.profile-pic.default-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+
+.profile-name h1 {
+    margin: 0;
+}
+
+.profile-actions {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    font-size: 11px;
+}
+
+.profile-info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.profile-info-table td {
+    padding: 4px 6px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 11px;
+}
+
+.profile-info-table td.label {
+    font-weight: bold;
+    width: 160px;
+    color: #333;
+}
+
+.friends-list {
+    list-style: none;
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-size: 11px;
+}
+
+.friends-list li {
+    padding: 3px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Edit profile */
+.edit-profile-container {
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid #b7c5d9;
+    padding: 15px;
+}
+
+.edit-profile-container h2 {
+    margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 10px;
+    color: #999;
+    font-size: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #e5e5e5;
+}

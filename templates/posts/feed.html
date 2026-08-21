@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}News Feed - Facebook{% endblock %}
+
+{% block content %}
+<div class="feed-container">
+    <div class="create-post">
+        {% if user.profile.profile_picture %}
+        <img src="{{ user.profile.profile_picture.url }}" alt="Profile" class="mini-avatar">
+        {% else %}
+        <div class="mini-avatar default-avatar">{{ user.username|first|upper }}</div>
+        {% endif %}
+        <form method="post" action="{% url 'create_post' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="content" placeholder="What's on your mind, {{ user.username }}?" required>
+            <input type="file" name="image" accept="image/*">
+            <button type="submit" class="btn-primary">Post</button>
+        </form>
+    </div>
+
+    {% for post in posts %}
+    <div class="post-card">
+        <div class="post-header">
+            <a href="{% url 'profile' post.author.username %}">
+                {% if post.author.profile.profile_picture %}
+                <img src="{{ post.author.profile.profile_picture.url }}" alt="Profile" class="mini-avatar">
+                {% else %}
+                <div class="mini-avatar default-avatar">{{ post.author.username|first|upper }}</div>
+                {% endif %}
+                <strong>{{ post.author.get_full_name|default:post.author.username }}</strong>
+            </a>
+            <span class="post-time">{{ post.created_at|timesince }} ago</span>
+        </div>
+        <div class="post-content">
+            <p>{{ post.content|linebreaks }}</p>
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="Post image" class="post-image">
+            {% endif %}
+        </div>
+        <div class="post-stats">
+            <span>❤️ {{ post.likes.count }} likes</span>
+            <span>💬 {{ post.comments.count }} comments</span>
+        </div>
+        <div class="post-actions">
+            <a href="{% url 'toggle_like' post.id %}" class="action-btn">👍 Like</a>
+            <button class="action-btn" onclick="document.getElementById('comment-form-{{ post.id }}').style.display='block'">💬 Comment</button>
+            {% if user == post.author %}
+                <a href="{% url 'delete_post' post.id %}" class="action-btn delete">🗑 Delete</a>
+            {% endif %}
+        </div>
+
+        <div id="comment-form-{{ post.id }}" class="comment-form" style="display: none;">
+            <form method="post" action="{% url 'add_comment' post.id %}">
+                {% csrf_token %}
+                <input type="text" name="content" placeholder="Write a comment..." required>
+                <button type="submit" class="btn-primary">Post</button>
+            </form>
+        </div>
+
+        <div class="comments-section">
+            {% for comment in post.comments.all %}
+            <div class="comment">
+                <a href="{% url 'profile' comment.author.username %}">
+                    <strong>{{ comment.author.username }}</strong>
+                </a>
+                <p>{{ comment.content }}</p>
+                <span class="comment-time">{{ comment.created_at|timesince }} ago</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-feed">
+        <h3>No posts yet</h3>
+        <p>Connect with friends to see their posts here!</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

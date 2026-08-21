@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile - Thefacebook{% endblock %}
+
+{% block content %}
+<div class="edit-profile-container">
+    <h2>Edit Profile</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="first_name" value="{{ user.first_name }}" placeholder="First name">
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="last_name" value="{{ user.last_name }}" placeholder="Last name">
+        </div>
+        <div class="form-group">
+            <label>Concentration</label>
+            <input type="text" name="concentration" value="{{ user.profile.concentration }}" placeholder="e.g. Computer Science">
+        </div>
+        <div class="form-group">
+            <label>House</label>
+            <input type="text" name="house" value="{{ user.profile.house }}" placeholder="e.g. Kirkland House">
+        </div>
+        <div class="form-group">
+            <label>Class Year</label>
+            <select name="class_year">
+                <option value="">Select</option>
+                <option value="2004" {% if user.profile.class_year == 2004 %}selected{% endif %}>2004</option>
+                <option value="2005" {% if user.profile.class_year == 2005 %}selected{% endif %}>2005</option>
+                <option value="2006" {% if user.profile.class_year == 2006 %}selected{% endif %}>2006</option>
+                <option value="2007" {% if user.profile.class_year == 2007 %}selected{% endif %}>2007</option>
+                <option value="2008" {% if user.profile.class_year == 2008 %}selected{% endif %}>2008</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Relationship Status</label>
+            <select name="relationship_status">
+                <option value="">Select</option>
+                <option value="single" {% if user.profile.relationship_status == 'single' %}selected{% endif %}>Single</option>
+                <option value="in_relationship" {% if user.profile.relationship_status == 'in_relationship' %}selected{% endif %}>In a Relationship</option>
+                <option value="engaged" {% if user.profile.relationship_status == 'engaged' %}selected{% endif %}>Engaged</option>
+                <option value="married" {% if user.profile.relationship_status == 'married' %}selected{% endif %}>Married</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Interested In</label>
+            <select name="interested_in">
+                <option value="">Select</option>
+                <option value="women" {% if user.profile.interested_in == 'women' %}selected{% endif %}>Women</option>
+                <option value="men" {% if user.profile.interested_in == 'men' %}selected{% endif %}>Men</option>
+                <option value="both" {% if user.profile.interested_in == 'both' %}selected{% endif %}>Both</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Courses This Semester</label>
+            <input type="text" name="courses" value="{{ user.profile.courses }}" placeholder="e.g. CS50, ECON101">
+        </div>
+        <div class="form-group">
+            <label>About Me</label>
+            <textarea name="about_me" rows="3" placeholder="Tell us about yourself">{{ user.profile.about_me }}</textarea>
+        </div>
+        <div class="form-group">
+            <label>Profile Picture</label>
+            <input type="file" name="profile_picture" accept="image/*">
+        </div>
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile_user.username }} - Thefacebook{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        {% if profile_user.profile.profile_picture %}
+        <img src="{{ profile_user.profile.profile_picture.url }}" alt="Profile photo" class="profile-pic">
+        {% else %}
+        <div class="profile-pic default-avatar">{{ profile_user.username|first|upper }}</div>
+        {% endif %}
+        <div class="profile-name">
+            <h1>{{ profile_user.get_full_name|default:profile_user.username }}</h1>
+        </div>
+    </div>
+
+    <div class="profile-actions">
+        {% if user == profile_user %}
+            <a href="{% url 'edit_profile' %}">Edit Profile</a>
+        {% else %}
+            {% load friends_tags %}
+            {% if profile_user|is_friend:user %}
+                <span>Friends</span>
+                <a href="{% url 'remove_friend' profile_user.id %}">Remove Friend</a>
+            {% else %}
+                <a href="{% url 'send_friend_request' profile_user.id %}">Add Friend</a>
+            {% endif %}
+            <a href="{% url 'send_poke' profile_user.id %}">Poke {{ profile_user.username }}</a>
+        {% endif %}
+    </div>
+
+    <table class="profile-info-table">
+        <tr><td class="label">Concentration:</td><td>{{ profile_user.profile.concentration|default:"-" }}</td></tr>
+        <tr><td class="label">House:</td><td>{{ profile_user.profile.house|default:"-" }}</td></tr>
+        <tr><td class="label">Class Year:</td><td>{{ profile_user.profile.class_year|default:"-" }}</td></tr>
+        <tr><td class="label">Relationship Status:</td><td>{{ profile_user.profile.get_relationship_status_display|default:"-" }}</td></tr>
+        <tr><td class="label">Interested In:</td><td>{{ profile_user.profile.get_interested_in_display|default:"-" }}</td></tr>
+        <tr>
+            <td class="label">Courses:</td>
+            <td>
+                {% if profile_user.profile.courses %}
+                    <a href="{% url 'classmates' profile_user.profile.courses %}">{{ profile_user.profile.courses }}</a>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+        </tr>
+        <tr><td class="label">About Me:</td><td>{{ profile_user.profile.about_me|default:"-" }}</td></tr>
+    </table>
+
+    <h2>Friends of {{ profile_user.username }} ({{ network_stats.friends_count }})</h2>
+    {% if profile_friends %}
+    <ul class="friends-list">
+        {% for friend in profile_friends %}
+        <li><a href="{% url 'profile' friend.username %}">{{ friend.get_full_name|default:friend.username }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No friends to display.</p>
+    {% endif %}
+
+    <h2>{{ profile_user.username }}'s Network</h2>
+    <p>
+        {{ network_stats.friends_count }} friend{{ network_stats.friends_count|pluralize }},
+        {{ network_stats.friends_of_friends_count }} friend{{ network_stats.friends_of_friends_count|pluralize }} of friends.
+    </p>
+</div>
+{% endblock %}

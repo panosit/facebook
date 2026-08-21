@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Thefacebook{% endblock %}
+
+{% block content %}
+<div class="homepage">
+    <div class="homepage-intro">
+        <div class="homepage-photo default-avatar">?</div>
+        <div class="homepage-text">
+            <h1 class="wordmark">Thefacebook</h1>
+            <p class="tagline">
+                Thefacebook is an online directory that connects people through social networks at colleges.
+                We have opened up Thefacebook for popular consumption at Harvard University.
+            </p>
+            <p class="tagline">You can use Thefacebook to:</p>
+            <ul class="intro-list">
+                <li>search for people at your school</li>
+                <li>find out who are in your classes</li>
+                <li>look up your friends' friends</li>
+                <li>see a visualization of your social network</li>
+            </ul>
+            <p class="tagline">
+                To get started, click below to register. If you have already registered, you can log in.
+            </p>
+        </div>
+    </div>
+
+    <div class="auth-box">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p class="auth-link">
+            <a href="{% url 'register' %}">Click here to register</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

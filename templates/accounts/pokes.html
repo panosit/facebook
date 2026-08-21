@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Pokes - Thefacebook{% endblock %}
+
+{% block content %}
+<h2>Pokes</h2>
+<table class="directory-table">
+    <tr>
+        <th></th>
+        <th>Who</th>
+        <th>When</th>
+        <th></th>
+    </tr>
+    {% for poke in received %}
+    <tr>
+        <td>
+            {% if poke.from_user.profile.profile_picture %}
+            <img src="{{ poke.from_user.profile.profile_picture.url }}" alt="Photo" class="thumb">
+            {% else %}
+            <div class="thumb default-avatar">{{ poke.from_user.username|first|upper }}</div>
+            {% endif %}
+        </td>
+        <td><a href="{% url 'profile' poke.from_user.username %}">{{ poke.from_user.get_full_name|default:poke.from_user.username }}</a> poked you.</td>
+        <td>{{ poke.created_at|timesince }} ago</td>
+        <td><a href="{% url 'remove_poke' poke.id %}">Remove</a></td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No pokes yet.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Thefacebook{% endblock %}
+
+{% block content %}
+<h2>People</h2>
+<table class="directory-table">
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Concentration</th>
+        <th>House</th>
+        <th>Class Year</th>
+    </tr>
+    {% for person in users %}
+    <tr>
+        <td>
+            <a href="{% url 'profile' person.username %}">
+                {% if person.profile.profile_picture %}
+                <img src="{{ person.profile.profile_picture.url }}" alt="Photo" class="thumb">
+                {% else %}
+                <div class="thumb default-avatar">{{ person.username|first|upper }}</div>
+                {% endif %}
+            </a>
+        </td>
+        <td><a href="{% url 'profile' person.username %}">{{ person.get_full_name|default:person.username }}</a></td>
+        <td>{{ person.profile.concentration|default:"-" }}</td>
+        <td>{{ person.profile.house|default:"-" }}</td>
+        <td>{{ person.profile.class_year|default:"-" }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No one else has joined Thefacebook yet.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
