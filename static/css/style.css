@@ -62,7 +62,7 @@ button { background: #3b5998; border: 1px solid #1d2f6f; color: #fff; cursor: po
 .info-table td { padding: 4px 5px; border-bottom: 1px solid #e6eaf2; vertical-align: top; }
 .info-table .label { width: 120px; background: #f7f7f7; color: #555; font-weight: bold; text-align: right; }
 .footer { border: 1px solid #b7c5d9; border-top: 0; color: #777; font-size: 10px; padding: 8px; text-align: center; }
-.auth-box, .edit-profile-container, .feed-container { border: 1px solid #b7c5d9; padding: 8px; }
+.auth-box, .edit-profile-container { border: 1px solid #b7c5d9; padding: 8px; }
 .directory-table, .profile-info-table { width: 100%; border-collapse: collapse; }
 .directory-table th, .directory-table td, .profile-info-table td { padding: 4px; border: 1px solid #d8dfea; }
 @media (max-width: 740px) { #page { width: auto; margin: 0; } .bluebar, .layout, .layout tbody, .layout tr, .sidebar, .content { display: block; width: auto; } .sidebar { border-right: 0; padding: 8px; } .content { padding: 8px; } .welcome-table, .welcome-table tbody, .welcome-table tr, .welcome-main, .login-panel { display: block; width: auto; } .login-panel { border-left: 0; border-top: 1px solid #b7c5d9; } }
