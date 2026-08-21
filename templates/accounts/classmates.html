@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Classmates - Thefacebook{% endblock %}
+
+{% block content %}
+<h2>People taking "{{ course }}"</h2>
+<table class="directory-table">
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Concentration</th>
+        <th>House</th>
+        <th>Class Year</th>
+    </tr>
+    {% for profile in classmates %}
+    <tr>
+        <td>
+            <a href="{% url 'profile' profile.user.username %}">
+                {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="Photo" class="thumb">
+                {% else %}
+                <div class="thumb default-avatar">{{ profile.user.username|first|upper }}</div>
+                {% endif %}
+            </a>
+        </td>
+        <td><a href="{% url 'profile' profile.user.username %}">{{ profile.user.get_full_name|default:profile.user.username }}</a></td>
+        <td>{{ profile.concentration|default:"-" }}</td>
+        <td>{{ profile.house|default:"-" }}</td>
+        <td>{{ profile.class_year|default:"-" }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No one else is taking this course.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

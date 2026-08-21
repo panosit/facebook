@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Thefacebook{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div id="page">
+    <table class="bluebar" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="logo-cell"><a href="{% url 'directory' %}" class="logo">[ thefacebook ]</a></td>
+            <td class="topnav">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'directory' %}">home</a> | <a href="{% url 'profile' user.username %}">my profile</a> | <a href="{% url 'my_friends' %}">my friends</a> | <a href="{% url 'logout' %}">logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}">login</a> | <a href="{% url 'register' %}">register</a> | <a href="{% url 'about' %}">about</a>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+    <table class="layout" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="sidebar" valign="top">
+                {% if user.is_authenticated %}
+                    <form class="search" action="{% url 'directory' %}" method="get">
+                        <input type="text" name="q" value="{{ request.GET.q }}">
+                        <button type="submit">search</button>
+                    </form>
+                    <div class="sidebox">
+                        <a href="{% url 'profile' user.username %}">My Profile</a>
+                        <a href="{% url 'edit_profile' %}">Edit Profile</a>
+                        <a href="{% url 'directory' %}">Search</a>
+                        <a href="{% url 'my_friends' %}">My Friends</a>
+                        <a href="{% url 'friend_requests' %}">Requests</a>
+                        <a href="{% url 'pokes' %}">Pokes</a>
+                    </div>
+                    <div class="school-box">Harvard University</div>
+                {% else %}
+                    <div class="sidebox public-links">
+                        <a href="{% url 'login' %}">Login</a>
+                        <a href="{% url 'register' %}">Register</a>
+                        <a href="{% url 'about' %}">About</a>
+                    </div>
+                {% endif %}
+            </td>
+            <td class="content" valign="top">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="message {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
+            </td>
+        </tr>
+    </table>
+
+    <div class="footer"><a href="{% url 'about' %}">about</a> | <a href="{% url 'directory' %}">home</a> | Thefacebook &copy; 2004</div>
+</div>
+</body>
+</html>

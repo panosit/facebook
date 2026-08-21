@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Search - Thefacebook{% endblock %}
+
+{% block content %}
+<div class="box-title">Search Results</div>
+{% if query %}<p class="small-note">Showing people matching "{{ query }}".</p>{% endif %}
+<table class="data-table" cellpadding="0" cellspacing="0">
+    <tr><th>Picture</th><th>Name</th><th>Concentration</th><th>House</th><th>Year</th></tr>
+    {% for person in users %}
+    <tr>
+        <td class="photo-cell"><a href="{% url 'profile' person.username %}">{% if person.profile.profile_picture %}<img src="{{ person.profile.profile_picture.url }}" alt="Photo" class="thumb">{% else %}<span class="thumb default-avatar">{{ person.username|first|upper }}</span>{% endif %}</a></td>
+        <td><a href="{% url 'profile' person.username %}">{{ person.get_full_name|default:person.username }}</a></td>
+        <td>{{ person.profile.concentration|default:"-" }}</td>
+        <td>{{ person.profile.house|default:"-" }}</td>
+        <td>{{ person.profile.class_year|default:"-" }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No people found.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

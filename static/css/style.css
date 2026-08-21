@@ -1,0 +1,79 @@
+/* Thefacebook February 2004-inspired interface */
+html, body { margin: 0; padding: 0; background: #fff; height: 100%; }
+body { color: #000; font: 11px Arial, Helvetica, sans-serif; }
+a { color: #3b5998; text-decoration: none; font-weight: bold; }
+a:hover { text-decoration: underline; }
+#page { display: flex; flex-direction: column; min-height: 100vh; width: 100%; }
+.bluebar { width: 100%; height: 54px; background: #3b5998; border-bottom: 1px solid #1d2f6f; color: #fff; display: table; table-layout: fixed; flex-shrink: 0; }
+.logo-cell { padding-left: 14px; vertical-align: middle; display: table-cell; width: 50%; }
+.logo { color: #fff; font: bold 26px Georgia, 'Times New Roman', serif; letter-spacing: -1px; display: inline-block; }
+.logo:hover { text-decoration: none; }
+.topnav { color: #cbd6ee; text-align: right; vertical-align: middle; padding: 0 8px; display: table-cell; width: 50%; font-size: 11px; }
+.topnav a { color: #fff; font-weight: normal; margin: 0 3px; }
+.layout { display: flex; flex: 1; width: 100%; background: #fff; justify-content: center; margin: 0 auto; }
+.sidebar { width: 220px; padding: 8px; border-right: 1px solid #d8dfea; background: #fff; flex-shrink: 0; overflow-y: auto; }
+.content { width: 680px; padding: 8px 12px; overflow-y: auto; border-right: 1px solid #d8dfea; }
+.search { margin: 0 0 8px 0; }
+.search input { width: 76px; height: 18px; font-size: 11px; }
+.search button { width: 43px; padding: 1px 0; font-size: 11px; }
+.sidebox { border: 1px solid #3b5998; margin-bottom: 8px; background: #fff; }
+.sidebox a, .sidebox span { display: block; padding: 3px 5px; border-bottom: 1px solid #d8dfea; font-weight: normal; font-size: 11px; }
+.sidebox a:hover { background: #f0f0f0; }
+.sidebox a:last-child { border-bottom: 0; }
+.public-links { border: 1px solid #3b5998; margin-bottom: 8px; background: #fff; }
+.public-links a { display: block; padding: 3px 5px; border-bottom: 1px solid #d8dfea; font-weight: normal; font-size: 11px; }
+.public-links a:last-child { border-bottom: 0; }
+.school-box { border: 1px solid #b7c5d9; background: #f7f7f7; color: #555; padding: 5px; text-align: center; font-size: 11px; margin-bottom: 8px; }
+.box-title, h2, .data-table th, .info-table th { background: #3b5998; color: #fff; font-weight: bold; text-align: left; padding: 3px 5px; border: 1px solid #1d2f6f; }
+.message { margin-bottom: 6px; padding: 4px 6px; border: 1px solid #999; background: #f7f7f7; }
+.success { background: #e8f1df; border-color: #9dbb83; }
+.error { background: #f7dddd; border-color: #c77; }
+.info { background: #eef3fb; border-color: #9ab4d8; }
+.warning { background: #fff3cf; border-color: #d9b75f; }
+.welcome-table { width: 100%; border: 1px solid #b7c5d9; background: #fff; display: flex; }
+.welcome-main { padding: 14px 18px; flex: 1; }
+.welcome-title { color: #3b5998; font: bold 20px Georgia, 'Times New Roman', serif; margin-bottom: 10px; }
+.welcome-main p { margin: 0 0 9px; line-height: 1.35; font-size: 11px; }
+.welcome-main ul { margin: 0 0 10px 20px; padding: 0; font-size: 11px; }
+.welcome-main li { margin-bottom: 4px; }
+.center-links { text-align: center; padding: 8px 0; }
+.login-panel { width: 190px; border-left: 1px solid #b7c5d9; background: #f7f7f7; }
+.login-panel .box-title { border-left: 0; border-right: 0; border-top: 0; }
+.form-table { margin: 8px; }
+.form-table td { padding: 2px; }
+.full-form { width: 100%; }
+.full-form input { width: 190px; }
+input, select, textarea { border: 1px solid #777; font: 11px Arial, Helvetica, sans-serif; padding: 2px; }
+textarea { width: 98%; }
+button { background: #3b5998; border: 1px solid #1d2f6f; color: #fff; cursor: pointer; font: bold 11px Arial, Helvetica, sans-serif; padding: 2px 8px; }
+.small-note { color: #444; margin: 8px; }
+.content-box { border: 1px solid #b7c5d9; background: #fff; }
+.narrow-box { width: 360px; margin: 0 auto; }
+.data-table { width: 100%; border-collapse: collapse; border: 1px solid #b7c5d9; }
+.data-table th { border-color: #3b5998; }
+.data-table td { padding: 4px 5px; border-bottom: 1px solid #e6eaf2; vertical-align: middle; }
+.photo-cell { width: 52px; text-align: center; }
+.thumb { width: 42px; height: 50px; object-fit: cover; border: 1px solid #777; }
+.default-avatar { display: inline-flex; align-items: center; justify-content: center; background: #d8dfea; color: #3b5998; font-weight: bold; }
+.profile-table { width: 100%; border: 1px solid #b7c5d9; border-top: 0; }
+.profile-left { width: 175px; padding: 10px; background: #f7f7f7; border-right: 1px solid #b7c5d9; text-align: center; }
+.profile-right { padding: 10px; }
+.profile-photo { width: 150px; min-height: 180px; max-height: 220px; object-fit: cover; border: 1px solid #777; background: #fff; }
+.large-avatar { font-size: 48px; }
+.action-list { margin-top: 8px; border: 1px solid #b7c5d9; background: #fff; text-align: left; }
+.action-list a, .action-list span { display: block; padding: 4px 5px; border-bottom: 1px solid #e6eaf2; font-weight: normal; }
+.info-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; border: 1px solid #b7c5d9; }
+.info-table th { border: 0; }
+.info-table td { padding: 4px 5px; border-bottom: 1px solid #e6eaf2; vertical-align: top; }
+.info-table .label { width: 120px; background: #f7f7f7; color: #555; font-weight: bold; text-align: right; }
+.footer { border-top: 1px solid #d8dfea; color: #777; font-size: 10px; padding: 8px; text-align: center; background: #fff; flex-shrink: 0; }
+.auth-box, .edit-profile-container { border: 1px solid #b7c5d9; padding: 8px; }
+.directory-table, .profile-info-table { width: 100%; border-collapse: collapse; }
+.directory-table th, .directory-table td, .profile-info-table td { padding: 4px; border: 1px solid #d8dfea; }
+@media (max-width: 740px) { 
+  .layout { flex-direction: column; } 
+  .sidebar { width: 100%; border-right: 0; border-bottom: 1px solid #d8dfea; padding: 8px; } 
+  .content { padding: 8px; } 
+  .welcome-table, .welcome-main, .login-panel { width: 100%; } 
+  .login-panel { border-left: 0; border-top: 1px solid #b7c5d9; } 
+}
