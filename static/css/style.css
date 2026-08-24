@@ -8,6 +8,7 @@ a:hover { text-decoration: underline; }
 .logo-cell { padding-left: 14px; vertical-align: middle; display: table-cell; width: 50%; }
 .logo { color: #fff; font: bold 26px Georgia, 'Times New Roman', serif; letter-spacing: -1px; display: inline-block; }
 .logo:hover { text-decoration: none; }
+.banner { height: 28px; vertical-align: middle; }
 .topnav { color: #cbd6ee; text-align: right; vertical-align: middle; padding: 0 8px; display: table-cell; width: 50%; font-size: 11px; }
 .topnav a { color: #fff; font-weight: normal; margin: 0 3px; }
 .layout { display: flex; flex: 1; width: 100%; background: #fff; justify-content: center; margin: 0 auto; }
@@ -30,6 +31,7 @@ a:hover { text-decoration: underline; }
 .error { background: #f7dddd; border-color: #c77; }
 .info { background: #eef3fb; border-color: #9ab4d8; }
 .warning { background: #fff3cf; border-color: #d9b75f; }
+.welcome-banner { display: block; width: 100%; height: auto; margin-bottom: 8px; }
 .welcome-table { width: 100%; border: 1px solid #b7c5d9; background: #fff; display: flex; }
 .welcome-main { padding: 14px 18px; flex: 1; }
 .welcome-title { color: #3b5998; font: bold 20px Georgia, 'Times New Roman', serif; margin-bottom: 10px; }
